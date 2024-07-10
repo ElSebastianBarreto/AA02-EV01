@@ -1,7 +1,17 @@
 {
-    "java.project.sourcePaths": ["src"],
-    "java.project.outputPath": "bin",
-    "java.project.referencedLibraries": [
-        "lib/**/*.jar"
-    ]
-}
+    "version": "0.2.0",
+    "configurations": [
+       {
+          "type": "java",
+          "name": "Launch App",
+          "request": "launch",
+          "mainClass": "App",
+          "projectName": "Enter",
+          "vmArgs": "-cp lib/postgresql-<version>.jar"
+       }
+ ],
+ "java.project.sourcePaths": [
+     "src"
+ ]
+ }
+ 
