@@ -6,7 +6,7 @@
           "name": "Launch App",
           "request": "launch",
           "mainClass": "App",
-          "projectName": "Enter",
+          "projectName": "AA02-EV01",
           "vmArgs": "-cp lib/postgresql-<version>.jar"
        }
  ],
