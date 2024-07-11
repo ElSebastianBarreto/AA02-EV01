@@ -153,21 +153,21 @@ public class App {
 
                     case 3:
 
-                        try (ResultSet ids = stmt.executeQuery("Select id from prueba")) {
+                        try (ResultSet ids = stmt.executeQuery("Select cedula from cliente")) {
                             while (ids.next()) {
-                                System.out.print("Id: " + ids.getInt("id"));
+                                System.out.print("Id: " + ids.getInt("cedula"));
                                 System.out.println();
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
-                        System.out.println("Escriba el id a editar: ");
+                        System.out.println("Escriba la cedula a editar: ");
                         int edit = scanner.nextInt();
                         scanner.nextLine();
 
 
                         System.out.println("\n Columnas a editar: \n");
-                        String datos = "SELECT column_name FROM information_schema.columns WHERE table_name = 'prueba';";
+                        String datos = "SELECT column_name FROM information_schema.columns WHERE table_name = 'cliente';";
                         try (ResultSet tabla = stmt.executeQuery(datos)) {
                             while (tabla.next()) {
 
@@ -182,36 +182,34 @@ public class App {
                         System.out.println("Escriba el nuevo dato a establecer");
                         String dato = scanner.nextLine();
 
-                        String edicion = "Update prueba set " + columna + " = '" + dato + "' where id = " + edit;
+                        String edicion = "Update cliente set " + columna + " = '" + dato + "' where cedula = " + edit;
                         stmt.executeUpdate(edicion);
                         System.out.println("Objeto modificado en base de datos ");
                         scanner.nextLine();
                         break;
 
                     case 4:
-                        try (ResultSet ids = stmt.executeQuery("Select id from prueba")) {
+                        try (ResultSet ids = stmt.executeQuery("Select cedula from cliente")) {
                             while (ids.next()) {
 
-                                System.out.print("Id: " + ids.getInt("id"));
+                                System.out.print("cedula: " + ids.getInt("cedula"));
                                 System.out.println();
                             }
                         } catch (SQLException e) {
                             e.printStackTrace();
                         }
-                        System.out.println("Escriba el id a eliminar: ");
+                        System.out.println("Escriba la cedula a eliminar: ");
 
                         int eliminar = scanner.nextInt();
 
                         scanner.nextLine();
 
-                        String elimiarRegistro = "delete from prueba where id =" + eliminar;
+                        String elimiarRegistro = "delete from cliente where cedula =" + eliminar;
                         stmt.executeUpdate(elimiarRegistro);
                         System.out.println("Objeto Eliminado en base de datos ");
                         scanner.nextLine();
                         break;
-
-                        case 5: 
-                        
+        
                     
 
                     default:
