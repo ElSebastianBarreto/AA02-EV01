@@ -9,26 +9,71 @@ public class App {
         String clave = "root";
        
 
-        class Prueba {
-            int id;
+        class Cliente {
+            int cedula;
             String nombre;
+            String apellido;
+            int edad;
+            String correo;
+            String clave;
+            String telefono;
 
             public int getCedula() {
-                return id;
+                return cedula;
             }
 
             public String getNombre() {
                 return nombre;
             }
 
+            public String getApellido() {
+                return apellido;
+            }
+
+            public int getEdad() {
+                return edad;
+            }
+
+            public String getCorreo() {
+                return correo;
+            }
+
+            public String getClave() {
+                return clave;
+            }
+
+            public String getTelefono() {
+                return telefono;
+            }
+
             // Setters
-            public void setCedula(int id) {
-                this.id = id;
+            public void setCedula(int cedula) {
+                this.cedula = cedula;
             }
 
             public void setNombre(String nombre) {
                 this.nombre = nombre;
             }
+
+            public void setApellido(String apellido) {
+                this.apellido = apellido;
+            }
+            public void setEdad(int edad) {
+                this.edad = edad;
+            }
+
+            public void setCorreo(String correo) {
+                this.correo = correo;
+            }
+
+            public void setClave(String clave) {
+                this.clave = clave;
+            }
+
+            public void setTelefono(String telefono) {
+                this.telefono = telefono;
+            }
+
 
         }
 
@@ -52,11 +97,16 @@ public class App {
 
                 switch (opcion) {
                     case 1:
-                        try (ResultSet rs = stmt.executeQuery("select * from prueba;")) {
+                        try (ResultSet rs = stmt.executeQuery("select * from cliente;")) {
                             while (rs.next()) {
 
-                                System.out.print("Id: " + rs.getInt("id"));
+                                System.out.print("Cedula: " + rs.getInt("cedula"));
                                 System.out.print(", Nombre: " + rs.getString("nombre"));
+                                System.out.print(", Apellido: " + rs.getString("apellido"));
+                                System.out.print(", Edad: " + rs.getInt("edad"));
+                                System.out.print(", Correo: " + rs.getString("correo"));
+                                System.out.print(", Clave: " + rs.getString("clave"));
+                                System.out.print(", telefono: " + rs.getString("telefono"));
                                 System.out.println();
                             }
                         } catch (SQLException e) {
@@ -67,20 +117,36 @@ public class App {
 
                     case 2:
                         System.out.println("Crear cliente: \n");
-
+                        Cliente cliente1 = new Cliente();
                         System.out.println("Id: ");
-                        int id = scanner.nextInt();
+                        cliente1.setCedula(scanner.nextInt());
                         scanner.nextLine();
+
+
                         System.out.println("Nombre: ");
-                        String nombre = scanner.nextLine();
-                        Prueba prueba1 = new Prueba();
-                        prueba1.setCedula(id);
-                        prueba1.setNombre(nombre);
-                        System.out.println("se insertara los datos: Cedula: " + prueba1.getCedula() + " Nombre: "
-                                + prueba1.getNombre());
-                        String obj1 = "INSERT INTO prueba (id, nombre) VALUES (" + prueba1.id + ", '" + prueba1.nombre
-                                + "')";
-                        stmt.executeUpdate(obj1);
+                        cliente1.setNombre(scanner.nextLine());
+
+                        System.out.println("Apellido: ");
+                        cliente1.setApellido(scanner.nextLine());
+
+                        System.out.println("Edad: ");
+                        cliente1.setEdad(scanner.nextInt());
+                        scanner.nextLine();
+
+                        System.out.println("Correo: ");
+                        cliente1.setCorreo(scanner.nextLine());
+
+                        System.out.println("Clave: ");
+                        cliente1.setClave(scanner.nextLine());
+
+                        System.out.println("Telefono: ");
+                        cliente1.setTelefono(scanner.nextLine());
+
+                       String objeto =  "Insert into cliente (cedula, nombre, apellido, edad, correo, clave, telefono) values (" +
+                       cliente1.getCedula()+", '"+ cliente1.getNombre()+ "', '"+ cliente1.getApellido()+ "', " + cliente1.getEdad() +
+                       ", '" + cliente1.getCorreo() + "', '" + cliente1.getClave() + "', '" + cliente1.getTelefono() + "');" ;
+                       stmt.executeUpdate(objeto);
+                        
                         System.out.println(
                                 "Objeto insertado en base de datos vuelve a iniciar el programa para ver los cambios");
                         break;
